@@ -1,0 +1,21 @@
+#中间过程会生成的音频文件文件夹
+output: C:\Users\dell\Downloads\Video\youtube\temp\
+#翻译时开启多少线程
+translate_threads: 1
+#翻译源语言
+from: en
+#翻译目标语言
+to: zh
+#视频文件夹
+path: C:\Users\dell\Downloads\Video\youtube\dugicomms\
+#视频子文件夹
+dir: Multiple Access in Mobile Cellular Networks
+#投稿前缀
+prefix: 【蜂窝网络多址】
+#转载人名称
+biliname: qianli112
+#投稿分区
+tid: 201
+#百度翻译密钥
+appid: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+secretKey: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
