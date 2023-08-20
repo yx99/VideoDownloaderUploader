@@ -16,6 +16,7 @@ def getFileNames(file_path):
 if __name__ == '__main__':
     with open('config.yaml', encoding='utf-8') as f:
         config = yaml.load(f.read(), Loader=yaml.FullLoader)
+    f.close()
     fullpath = config['path']+config['dir']
     videoFile = getFileNames(fullpath)
     biliname = config['biliname']
@@ -58,6 +59,8 @@ if __name__ == '__main__':
                     tags.append(i)
             if len(tags)>9:
                 tags = tags[:10]
+            if len(tags)==0:
+                tags.append('搬运')
             webpage_url = info_data['webpage_url']
         video = Data()
         video.title = title # title
@@ -76,7 +79,7 @@ if __name__ == '__main__':
         dedeuserid = ''
         access_token = ''
 
-        with open(cookie.json, 'r') as f:
+        with open('cookie.json', 'r') as f:
             cookie_contents = json.loads(f.read())
         f.close()
         if 'cookie_info' in cookie_contents:
@@ -109,13 +112,7 @@ if __name__ == '__main__':
         }
 
         with BiliBili(video) as bili:
-            bili.login("bili.cookie", {
-                'cookies':{
-                    'SESSDATA': '93d5b1a5%2C1707982928%2C37f4d981',
-                    'bili_jct': '457f4396236bc059e909dba8b6509ae3',
-                    'DedeUserID__ckMd5': 'cb5d252352deefea',
-                    'DedeUserID': 'en571061'
-                },'access_token': 'aa6e422037bc0bb3c4ff4ee3b0857381'})
+            bili.login("bili.cookie", login_access)
             # bili.login_by_password("username", "password")
             video_part = bili.upload_file(filepath, lines=lines, tasks=tasks)  # 上传视频，默认线路AUTO自动选择，线程数量3。
             video.append(video_part)  # 添加已经上传的视频
